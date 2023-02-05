@@ -1,6 +1,9 @@
 # This example requires the 'message_content' intent.
-
+import os
 import discord
+from dotenv import load_dotenv
+
+load_dotenv()
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -13,10 +16,13 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    print(f'recieved message {message}')
+    print(f'client.user: {client.user}')
     if message.author == client.user:
         return
 
     if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+        await message.channel.send('sup')
 
-client.run('your token here')
+token = os.getenv('SECRET_DISCORD_TOKEN')
+client.run(token)
