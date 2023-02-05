@@ -20,11 +20,19 @@ async def on_ready():
 
 @disco.command()
 async def snap(ctx, arg1, arg2):
-    print(f'looks like we received something {ctx}')
-    print(f'looks like we received something {arg1}')
-    print(f'looks like we received something {arg2}')
-    await ctx.send(f'you passed {arg1} and {arg2}')
+    await ctx.send(f'still working on that ^_^;')
 
+@disco.command()
+async def echo(ctx: commands.Context , arg):
+    print('got an echo!')
+    og_msg = ctx.message.reference
+    if og_msg:
+        og_id = og_msg.message_id
+        oldie = await ctx.channel.fetch_message(og_id)
+        print(f'the old message is {oldie}')
+        await ctx.reply(f'{oldie.content}\n{arg}')
 
+    else:
+        await ctx.reply(f'*silence*\n{arg}')
 
 disco.run(TOKEN)
