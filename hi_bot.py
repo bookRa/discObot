@@ -10,20 +10,21 @@ TOKEN = os.getenv('SECRET_DISCORD_TOKEN')
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = discord.Client(intents=intents)
+disco = commands.Bot(command_prefix='$', intents=intents)
 
-@client.event
+
+@disco.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    print(f'We have logged in as {disco.user}')
 
-@client.event
-async def on_message(message):
-    print(f'recieved message {message}')
-    print(f'client.user: {client.user}')
-    if message.author == client.user:
-        return
 
-    if message.content.startswith('$hello'):
-        await message.channel.send('sup')
+@disco.command()
+async def snap(ctx, arg1, arg2):
+    print(f'looks like we received something {ctx}')
+    print(f'looks like we received something {arg1}')
+    print(f'looks like we received something {arg2}')
+    await ctx.send(f'you passed {arg1} and {arg2}')
 
-client.run(TOKEN)
+
+
+disco.run(TOKEN)
