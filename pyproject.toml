@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "discobot"
+version = "0.1.0"
+description = ""
+authors = ["bookRa <ommarab@proton.me>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+discord = "^2.2.2"
+python-dotenv = "^1.0.0"
+openai = "^0.27.0"
+
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.0.0"
+notebook = "^6.5.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
